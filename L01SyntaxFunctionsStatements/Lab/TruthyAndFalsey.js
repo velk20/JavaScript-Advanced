@@ -5,12 +5,12 @@ function checkValue(value) {
     console.log('Falsey');
   }
 }
-
-checkValue('Pesho');
-checkValue('false');
-checkValue(false);
-checkValue('');
-checkValue('0');
-checkValue(0);
-checkValue(10);
+//falsy values => false, null, undefined, NaN, 0, 0n, ""
+checkValue('Pesho');//true
+checkValue('false');//true
+checkValue(false);//false
+checkValue('');//false
+checkValue('0');//true
+checkValue(0);//false
+checkValue(10);//true
 

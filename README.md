@@ -1,2 +1,2 @@
 # JavaScript-Advanced
-Softuni Java Advanced course May/2022
+Softuni JavaScript Advanced course May/2022
