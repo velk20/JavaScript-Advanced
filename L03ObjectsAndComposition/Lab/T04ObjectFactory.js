@@ -1,9 +1,11 @@
 function factory(lib, arr) {
     let result = [];
     for (const arrElement of arr) {
-        let obj = {};
-        obj.name = arrElement['template'].name;
-        obj[lib[arrElement['parts']]] = arrElement['parts'][0];
+        let obj = Object.assign({}, arrElement.template);
+        for (let part of arrElement.parts) {
+            obj[part] = lib[part];
+        }
+
         result.push(obj);
     }
 
