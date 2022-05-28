@@ -1,9 +1,9 @@
-function solve(arr) {
-    arr.sort();
-    for (let i = 0; i < arr.length; i++) {
-        console.log(`${i + 1}.${arr[i]}`);
-
-    }
+function listOfNames(arr) {
+    const result = arr.sort((a, b) => a.localeCompare(b));
+    result.forEach((v, i) => console.log(`${i + 1}.${result[i]}`));
+    // for (let i = 0; i < result.length; i++) {
+    //     console.log(`${i + 1}.${result[i]}`);
+    // }
 }
 
-solve(["John", "Bob", "Christina", "Ema"]);
+listOfNames(['John', 'Bob', 'Christina', 'Ema']);
