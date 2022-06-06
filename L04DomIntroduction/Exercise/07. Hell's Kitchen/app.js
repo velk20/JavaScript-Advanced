@@ -2,29 +2,16 @@ function solve() {
     document.querySelector('#btnSend').addEventListener('click', onClick);
 
     function onClick() {
-        const regex = /"(.+?)"/g;
-        let text = document.querySelector('#inputs textarea').value.slice(1, -1).match(regex).map(e => e.slice(1, -1));
-        let restaurants = {};
-
+        let text = JSON.parse(document.querySelector('#inputs textarea').value);
+        let avgSalary = 0;
+        let totalSalary = 0;
+        let currAvgSalary = 0;
+        let bestName = '';
+        let output = {};
         for (const textElement of text) {
-            const [restaurantName, workers] = textElement.split(' - ');
-            const employees = workers.split(', ');
-            for (const employee of employees) {
-                const [nameWorker, salary] = employee.split(', ');
-                console.log(nameWorker, salary)
-                if (!restaurants[restaurantName]) {
-                    restaurants[restaurantName] = {
-                        name: nameWorker,
-                        salary: salary
-                    }
-                } else {
+            let restaurantInfo = textElement.split(' - ');
+            let restaurantName = restaurantInfo.shift();
 
-                }
-            }
         }
-
-        console.log(restaurants);
-
-
     }
 }
