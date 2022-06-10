@@ -1,5 +1,5 @@
 function solve() {
-    const table = document.querySelector('table.table tbody');
+    /*const table = document.querySelector('table.table tbody');
     const [inputText, outputText] = Array.from(document.getElementsByTagName('textarea'));
     const [generateBtn, buyBtn] = Array.from(document.getElementsByTagName('button'));
 
@@ -49,4 +49,14 @@ function solve() {
         const avgDecFactor = furniture.reduce((a, c) => a + c.decFactor, 0) / furniture.length;
         outputText.value = `Bought furniture: ${bought.join(', ')}\nTotal price: ${totalPrice.toFixed(2)}\nAverage decoration factor: ${avgDecFactor}`;
     }
+    */
+    let elementById = document.getElementById('exercise');
+    let generateBtn = elementById.querySelector('button');
+
+    function getProductInfo(event) {
+
+    }
+
+
+
 }
