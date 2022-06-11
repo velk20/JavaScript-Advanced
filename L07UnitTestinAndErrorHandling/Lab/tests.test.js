@@ -1,6 +1,7 @@
 const { assert, expect } = require('chai');
 const { sum } = require('../Lab/T04SumOfNumber');
 const { isSymmetric } = require('../Lab/T05CheckForSymmetry');
+const { rgbToHexColor } = require('../Lab/T06RBG');
 
 /*
 describe('Test Suite', () => {
@@ -34,6 +35,7 @@ describe('Test Sum of Numbers', () => {
 });*/
 
 //*Task 5
+/*
 describe('Test Sum of Numbers', () => {
   it('returns true for symmetric array', () => {
     expect(isSymmetric([1, 2, 2, 1])).to.be.true;
@@ -59,5 +61,12 @@ describe('Test Sum of Numbers', () => {
   });
   it('returns false for string parameter', () => {
     expect(isSymmetric('abba')).to.be.false;
+  });
+});*/
+
+//* Task 6
+describe('Test RGB', () => {
+  it('returns true for symmetric array', () => {
+    expect(rgbToHexColor([1, 2, 2, 1])).to.be.true;
   });
 });
