@@ -1,0 +1,22 @@
+{
+  "name": "javascript-advanced",
+  "version": "1.0.0",
+  "description": "Softuni JavaScript Advanced course May/2022",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/velk20/JavaScript-Advanced.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/velk20/JavaScript-Advanced/issues"
+  },
+  "homepage": "https://github.com/velk20/JavaScript-Advanced#readme",
+  "dependencies": {
+    "chai": "^4.3.6"
+  }
+}
