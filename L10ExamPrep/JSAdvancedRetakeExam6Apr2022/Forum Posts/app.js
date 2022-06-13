@@ -1,95 +1,71 @@
 window.addEventListener("load", solve);
 
 function solve() {
-    let publishBtn = document.getElementById('publish-btn');
+
+
+    let publishedPosts = document.getElementById('published-list');
     let reviewList = document.getElementById('review-list');
-    let publishedList = document.getElementById('published-list');
+    let publishBtn = document.getElementById('publish-btn')
 
-    let clearBtn = document.getElementById('clear-btn');
-    clearBtn.addEventListener('click', () => {
-        publishedList.innerHTML = '';
+    let title = document.getElementById('post-title');
+    let category = document.getElementById('post-category');
+    let content = document.getElementById('post-content');
 
-    })
+    publishBtn.addEventListener('click', publish);
 
-
-    let postForReviews = [];
-
-    publishBtn.addEventListener('click', () => {
-        let title = document.getElementById('post-title');
-        let category = document.getElementById('post-category');
-        let content = document.getElementById('post-content');
-
-        if (title.value !== '' && category.value !== '' && content.value !== '') {
-            let liElement = document.createElement('li');
-            liElement.classList.add('rpost');
-
-            // * article
-            let articleElement = document.createElement('article');
-            let h4El = document.createElement('h4');
-            h4El.textContent = title.value;
-
-            let pEl1 = document.createElement('p');
-            pEl1.textContent = `Category: ${category.value}`;
-
-            let pEl2 = document.createElement('p');
-            pEl2.textContent = `Content: ${content.value}`;
-
-            articleElement.appendChild(h4El);
-            articleElement.appendChild(pEl1);
-            articleElement.appendChild(pEl2);
-
-            liElement.appendChild(articleElement);
-
-            let btnEdit = document.createElement('button');
-            btnEdit.classList.add('action-btn');
-            btnEdit.classList.add('edit');
-            btnEdit.textContent = 'Edit'
-            btnEdit.addEventListener('click', edit);
-
-            function edit(event) {
-                let liElementForEdit = event.currentTarget.parentElement;
-                let currentArticle = liElementForEdit.querySelector('article');
-
-                let titleCurrent = currentArticle.querySelector('h4').textContent;
-                let [categoryCurrent, contentCurrent] = currentArticle.querySelectorAll('p');
-
-                reviewList.removeChild(liElementForEdit)
-
-                title.value = titleCurrent;
-                category.value = categoryCurrent.textContent;
-                content.value = contentCurrent.textContent;
-            }
-
-
-            let btnApprove = document.createElement('button');
-            btnApprove.classList.add('action-btn');
-            btnApprove.classList.add('approve');
-            btnApprove.textContent = 'Approve';
-            btnApprove.addEventListener('click', approve);
-
-            function approve(event) {
-                let liElementForEdit = event.currentTarget.parentElement;
-                reviewList.removeChild(liElementForEdit)
-
-                let btns = liElementForEdit.querySelectorAll('button');
-                liElementForEdit.removeChild(btns[0]);
-                liElementForEdit.removeChild(btns[1]);
-
-                publishedList.appendChild(liElementForEdit);
-
-            }
-
-            liElement.appendChild(btnEdit);
-            liElement.appendChild(btnApprove);
-
-            reviewList.appendChild(liElement);
-
-            postForReviews.push(liElement);
-
-            title.value = '';
-            content.value = '';
-            category.value = '';
+    document.getElementById('clear-btn').addEventListener('click', () => {
+        while (publishedPosts.firstChild != null) {
+            publishedPosts.removeChild(publishedPosts.firstChild).remove();
         }
     });
 
+    function publish() {
+
+        let titleText = title.value;
+        let categoryText = category.value;
+        let contentText = content.value;
+
+        if (!title.value || !category.value || !content.value) {
+            return
+        }
+
+        let li = el('li', '', reviewList);
+        li.className = 'rpost';
+        let article = el('article', '', li);
+        let h4 = el('h4', `${titleText}`, article);
+        let p = el('p', `Category: ${categoryText}`, article);
+        let contentP = el('p', `Content: ${contentText}`, article);
+        let editBtn = el('button', `Edit`, li);
+        editBtn.className = 'action-btn edit';
+        let appBtn = el('button', `Approve`, li);
+        appBtn.className = 'action-btn approve';
+
+
+        appBtn.addEventListener('click', (e) => {
+            e.target.parentNode.remove();
+            li.removeChild(editBtn);
+            li.removeChild(appBtn);
+            publishedPosts.appendChild(li);
+        });
+
+        editBtn.addEventListener('click', () => {
+            reviewList.removeChild(li);
+            title.value = titleText;
+            category.value = categoryText;
+            content.value = contentText;
+        });
+
+        title.value = '';
+        category.value = '';
+        content.value = '';
+    }
+
+    function el(type, content, parent) {
+        const element = document.createElement(type);
+        element.textContent = content;
+        if (parent) {
+            parent.appendChild(element);
+        }
+        return element;
+    }
 }
