@@ -41,10 +41,9 @@ class Garden {
     currentPlant.ripe = true;
     currentPlant.quantity += Number(quantity);
 
-    if (quantity == 1)
-      return `${quantity} ${plantName} has successfully ripened.`;
-
-    return `${quantity} ${plantName}s have successfully ripened.`;
+    return quantity == 1
+      ? `${quantity} ${plantName} has successfully ripened.`
+      : `${quantity} ${plantName}s have successfully ripened.`;
   }
 
   harvestPlant(plantName) {
@@ -76,11 +75,8 @@ class Garden {
     let res = '';
     res += `The garden has ${this.spaceAvailable} free space left.\n`;
 
-    this.plants.sort((a, b) => {
-      if (a > b) return 1;
-      if (a < b) return -1;
-      return 0;
-    });
+    //*alphabetically
+    this.plants.sort((a, b) => a.localeCompare(b));
 
     res += `Plants in the garden: ${this.plants
       .map((plant) => plant.plantName)
