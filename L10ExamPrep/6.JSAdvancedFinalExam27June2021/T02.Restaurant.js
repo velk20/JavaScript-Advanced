@@ -11,4 +11,10 @@ class Restaurant {
       let [name, quantity, totalPrice] = product.split(' ');
     }
   }
+
+  addToMenu() {}
+
+  showTheMenu() {}
+
+  makeTheOrder() {}
 }
